@@ -20,7 +20,7 @@ abstract class Ability(
         player.takeCooldown(this.cooldown + 1)
     }
 
-    public fun showAbilitys(player: Character) {
+    public fun showAbilitys() {
         val totalWidth = 34
 
         println("╔══════════════════════════════════╗")
