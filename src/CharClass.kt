@@ -31,14 +31,27 @@ interface CharClass {
 
     fun abilitiesInfo(selector: Boolean) {
         clearScreen()
-        println("\n╔══════════════════════════════════╗")
-        if (selector) println("║  1. Selecionar                   ║")
-        println("║  2. Ver atributos                ║")
-        println("║  3. Ver habilidades              ║")
-        println("║  4. Ver passiva                  ║")
-        println("║  0. Voltar                       ║")
-        println("╚══════════════════════════════════╝")
-        print("\n➜ Escolha uma opção:")
+        val attributesWithSelection = listOf(
+            "1. Selecionar Personagem",
+            "2. Atributos",
+            "3. Habilidades",
+            "4. Passiva",
+            "0. Voltar"
+        )
+
+        val attibutesWithoutSelection = listOf(
+            "2. Atributos",
+            "3. Habilidades",
+            "4. Passiva",
+            "0. Voltar"
+        )
+
+        PrinterConsoleBox.printBox(
+            title = className,
+            attributes = if (selector) attributesWithSelection else attibutesWithoutSelection,
+            description = "",
+            width = 50
+        )
     }
 
     fun showAbilitiesClass(selector: Boolean): String {
