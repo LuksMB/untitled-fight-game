@@ -6,6 +6,7 @@ abstract class CharClass(
     val baseDefense: Int,
     val baseAccuracy: Int,
     val baseResource: Int,
+    // val passive: PassiveAbility,
     // val charMoveset: CharMoveset
 ) {
     fun presentClass() {
