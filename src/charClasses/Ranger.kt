@@ -8,7 +8,7 @@ import enum.AffectedStat
 
 class Ranger: CharClass(
     className = "Atirador",
-    baseHp = 120,
+    baseHp = 120.0,
     baseDefense = 15,
     baseAccuracy = 90,
     baseResource = 6,
@@ -37,11 +37,9 @@ class Ranger: CharClass(
         Ability(
             "Recarregar",
             10,
-            0,
+            -6,
             "Rebola o tambor vazio no inimigo e recarrega as balas, para tudo se tem uma utilidade."
 
         )
     )
-) {
-
-}
+)

@@ -4,7 +4,7 @@ abstract class CharClass(
     val className: String,
     val resourceName: String,
     val description: String,
-    val baseHp: Int,
+    val baseHp: Double,
     val baseDefense: Int,
     val baseAccuracy: Int,
     val baseResource: Int,

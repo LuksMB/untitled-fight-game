@@ -2,11 +2,11 @@ class Character(
     val name: String,
     val charClass: CharClass
 ) {
-    private var maxHp: Int = charClass.baseHp
+    private var maxHp: Double = charClass.baseHp
     private var maxResource: Int = charClass.baseResource
     private var resourceName: String = charClass.resourceName
 
-    private var hp: Int = maxHp
+    private var hp: Double = maxHp
     private var resource: Int = maxResource
     private var accuracy: Int = charClass.baseAccuracy
     private var defense: Int = charClass.baseDefense
@@ -16,17 +16,22 @@ class Character(
     fun activatePassive() { passiveStatus = true }
     fun deactivatePassive() { passiveStatus = false }
 
-    fun getHp(): Int = hp
+    fun getHp(): Double = hp
 
     fun isAlive(): Boolean = hp > 0
-    fun takeDamage(damage: Int) {
+    fun takeDamage(damage: Double) {
         hp -= damage
         if (hp < 0) hp = 0
     }
 
+    fun getResource(): Int = resource
     fun useResource(cost: Int) {
         resource -= cost
         if (resource < 0) resource = 0
+    }
+    fun gainResource(cost: Int) {
+        resource += cost
+        if (resource > maxResource) resource = maxResource
     }
 
     fun increaseDefense(cost: Int) {
@@ -38,4 +43,7 @@ class Character(
         hp += cost
         if (hp > 100) hp = 100
     }
+
+    fun getResourceName(): String {}
+    fun getAccuracy(): Int {}
 }

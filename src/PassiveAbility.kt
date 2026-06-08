@@ -33,8 +33,8 @@ class PassiveAbility(
     private fun onOpponentMiss(opponent: Character) {
         when (this.affectedStat) {
             AffectedStat.NONE -> {
-                opponent.takeDamage(modifierValue)
-                println($$"» [PASSIVA: $$name] Contra-ataque! $modifierValue de dano causado no oponente.")
+                opponent.takeDamage(modifierValue + 0.0)
+                println($$"» [PASSIVA: $$name] $modifierValue de dano causado ao oponente.")
             }
             else -> return
         }
@@ -49,6 +49,7 @@ class PassiveAbility(
                     println("» [PASSIVA: $name] Dano aumentado em $modifierValue% !")
                 } else if (actualHp >= activationThreshold) {
                     player.deactivatePassive()
+                    println("» [PASSIVA: $name] O sangue esfriou, sua força volta ao normal...")
                 }
             }
             else -> return
