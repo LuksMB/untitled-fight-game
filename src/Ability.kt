@@ -44,19 +44,15 @@ class Ability(
 
     fun showAbilities() {
         val attributes = listOf(
-            "Nome         : $name",
-            "Dano         : $damage",
-            "Custo        : $cost",
+            "Dano              : $damage",
+            "Custo             : $cost",
         )
 
         PrinterConsoleBox.printBox(
-            title = "HABILIDADE",
+            title = name,
             attributes = attributes,
             description = description,
-            width = 34
+            width = 50
         )
-
-        println("Pressione ENTER para voltar")
-        readln()
     }
 }

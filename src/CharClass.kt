@@ -1,3 +1,4 @@
+import GameInfo.Companion.clearScreen
 import components.PrinterConsoleBox
 
 abstract class CharClass(
@@ -17,7 +18,7 @@ abstract class CharClass(
             "HP Base                    : $baseHp",
             "Defesa Base                : $baseDefense",
             "Precisão Base              : $baseAccuracy",
-            "$resourceName Base         : $baseResource"
+            "$resourceName Base         : $baseResource" // Criar regra para cada resourse
         )
 
         PrinterConsoleBox.printBox(
@@ -26,13 +27,41 @@ abstract class CharClass(
             description = description,
             width = 50
         )
+    }
 
-        println("Pressione ENTER para ver as habilidades")
-        readln()
+    fun AbilitiesInfo() {
+        println("\n╔══════════════════════════════════╗")
+        println("║  1. Ver atributos                ║")
+        println("║  2. Ver habilidades              ║")
+        println("║  3. Ver passiva                  ║")
+        println("║  0. Voltar                       ║")
+        println("╚══════════════════════════════════╝")
+        print("\n➜ Escolha uma opção:")
+    }
 
-        // Aqui ficam as habilidades
-
-        println("Pressione ENTER para voltar")
-        readln()
+    fun showAbilitiesClass() {
+        AbilitiesInfo()
+        while (true){
+            when (readln()) {
+                "1" -> {
+                    presentClass()
+                    AbilitiesInfo()
+                }
+                "2" -> {
+                    clearScreen()
+                    charMoveset.forEach { it.showAbilities() }
+                    AbilitiesInfo()
+                }
+                "3" -> {
+                    clearScreen()
+                    passive.showPassiveAbility()
+                    AbilitiesInfo()
+                }
+                "0" -> {
+                    break
+                }
+                else -> println("Opção inválida!")
+            }
+        }
     }
 }

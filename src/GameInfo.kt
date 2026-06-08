@@ -51,9 +51,9 @@ class GameInfo {
             println("╔══════════════════════════════════╗")
             println("║      Classes Disponíveis         ║")
             println("╠══════════════════════════════════╣")
-            println("║  1. Fighter                      ║")
-            println("║  2. Ranger                       ║")
-            println("║  3. Mage                         ║")
+            println("║  1. Lutador                      ║")
+            println("║  2. Atirador                     ║")
+            println("║  3. Mago                         ║")
             println("║  0. Voltar ao menu principal     ║")
             println("╚══════════════════════════════════╝")
             print("\n➜ Escolha uma opção: ")
@@ -66,9 +66,9 @@ class GameInfo {
             while (true){
                 showClassesInfo()
                 when (readln()) {
-                    "1" -> fighter.presentClass()
-                    "2" -> ranger.presentClass()
-                    "3" -> mage.presentClass()
+                    "1" -> fighter.showAbilitiesClass()
+                    "2" -> ranger.showAbilitiesClass()
+                    "3" -> mage.showAbilitiesClass()
                     "0" -> {
                         break
                     }

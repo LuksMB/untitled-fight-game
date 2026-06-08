@@ -17,11 +17,13 @@ class Character(
     fun deactivatePassive() { passiveStatus = false }
 
     fun getHp(): Double = hp
+    fun getResourceName(): String { return resourceName }
+    fun getAccuracy(): Int { return accuracy }
 
     fun isAlive(): Boolean = hp > 0
     fun takeDamage(damage: Double) {
         hp -= damage
-        if (hp < 0) hp = 0
+        if (hp < 0) hp = 0.0
     }
 
     fun getResource(): Int = resource
@@ -41,9 +43,6 @@ class Character(
 
     fun increaseDamage(cost: Int) {
         hp += cost
-        if (hp > 100) hp = 100
+        if (hp > 100) hp = 100.0
     }
-
-    fun getResourceName(): String {}
-    fun getAccuracy(): Int {}
 }

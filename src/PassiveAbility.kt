@@ -62,18 +62,6 @@ class PassiveAbility(
             "» Efeito  : +$modifierValue de $affectedStat"
         )
 
-        if (trigger == TriggerType.ON_TAKE_DAMAGE) {
-            attributes.add("» Ativa quando recebe dano e incrementa $modifierValue de DEFESA")
-        }
-
-        if (trigger == TriggerType.ON_OPPONENT_MISS) {
-            attributes.add("» Ativa quando o oponente erra um movimento, desferindo $activationThreshold de ATAQUE")
-        }
-
-        if (trigger == TriggerType.ON_LOW_HEALTH) {
-            attributes.add("» Ativa abaixo de $activationThreshold HP")
-        }
-
         PrinterConsoleBox.printBox(
             title = "HABILIDADE PASSIVA: $name",
             attributes = attributes,
