@@ -45,7 +45,7 @@ class GameInfo {
             readln()
         }
 
-        fun showClassesInfo() {
+        fun showClassesInfo(selector: Boolean) {
             clearScreen()
 
             println("╔══════════════════════════════════╗")
@@ -54,27 +54,30 @@ class GameInfo {
             println("║  1. Lutador                      ║")
             println("║  2. Atirador                     ║")
             println("║  3. Mago                         ║")
-            println("║  0. Voltar ao menu principal     ║")
+            if (!selector) println("║  0. Voltar ao menu principal     ║")
             println("╚══════════════════════════════════╝")
             print("\n➜ Escolha uma opção: ")
         }
 
-        fun classesInfoMenu() {
+        fun classesInfoMenu(selector: Boolean): String {
             val mage = Mage()
             val fighter = Fighter()
             val ranger = Ranger()
+            var escolha = "exit"
             while (true){
-                showClassesInfo()
+                if (escolha != "exit") return escolha
+                showClassesInfo(selector)
                 when (readln()) {
-                    "1" -> fighter.showAbilitiesClass()
-                    "2" -> ranger.showAbilitiesClass()
-                    "3" -> mage.showAbilitiesClass()
+                    "1" -> escolha = fighter.showAbilitiesClass(selector)
+                    "2" -> escolha = ranger.showAbilitiesClass(selector)
+                    "3" -> escolha = mage.showAbilitiesClass(selector)
                     "0" -> {
-                        break
+                        if (!selector) break else println("Opção inválida!")
                     }
                     else -> println("Opção inválida!")
                 }
             }
+            return escolha
         }
     }
 }

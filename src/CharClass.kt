@@ -13,6 +13,7 @@ interface CharClass {
     val charMoveset: List<Ability>
 
     fun presentClass() {
+        clearScreen()
         val attributes = listOf(
             "HP Base                    : $baseHp",
             "Defesa Base                : $baseDefense",
@@ -28,33 +29,36 @@ interface CharClass {
         )
     }
 
-    fun abilitiesInfo() {
+    fun abilitiesInfo(selector: Boolean) {
+        clearScreen()
         println("\n╔══════════════════════════════════╗")
-        println("║  1. Ver atributos                ║")
-        println("║  2. Ver habilidades              ║")
-        println("║  3. Ver passiva                  ║")
+        if (selector) println("║  1. Selecionar                   ║")
+        println("║  2. Ver atributos                ║")
+        println("║  3. Ver habilidades              ║")
+        println("║  4. Ver passiva                  ║")
         println("║  0. Voltar                       ║")
         println("╚══════════════════════════════════╝")
         print("\n➜ Escolha uma opção:")
     }
 
-    fun showAbilitiesClass() {
-        abilitiesInfo()
+    fun showAbilitiesClass(selector: Boolean): String {
+        abilitiesInfo(selector)
         while (true){
             when (readln()) {
                 "1" -> {
-                    presentClass()
-                    abilitiesInfo()
+                    if (selector) return this.className else println("Opção inválida!")
                 }
                 "2" -> {
-                    clearScreen()
-                    charMoveset.forEach { it.showAbilities() }
-                    abilitiesInfo()
+                    presentClass()
+                    abilitiesInfo(selector)
                 }
                 "3" -> {
-                    clearScreen()
+                    charMoveset.forEach { it.showAbilities() }
+                    abilitiesInfo(selector)
+                }
+                "4" -> {
                     passive.showPassiveAbility()
-                    abilitiesInfo()
+                    abilitiesInfo(selector)
                 }
                 "0" -> {
                     break
@@ -62,5 +66,6 @@ interface CharClass {
                 else -> println("Opção inválida!")
             }
         }
+        return "exit"
     }
 }
