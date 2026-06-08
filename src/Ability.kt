@@ -1,14 +1,15 @@
 abstract class Ability(
     val name: String,
     val damage: Int,
+    val cost: Int,
     val description: String,
     val cooldown: Int
 ) {
 
     public fun execute(player: Character, opponent: Character) {
         if (player.isAlive()) {
+            chargePlayer(player)
             applyDamage(opponent)
-            applyCooldown(player)
         }
     }
 
@@ -16,8 +17,8 @@ abstract class Ability(
         opponent.takeDamage(this.damage)
     }
 
-    private fun applyCooldown(player: Character) {
-        player.takeCooldown(this.cooldown + 1)
+    private fun chargePlayer(player: Character) {
+        player.useResource(this.cost)
     }
 
     public fun showAbilitys() {
@@ -34,8 +35,8 @@ abstract class Ability(
         val damageText = "  » Dano: $damage"
         println("║${damageText.padEnd(totalWidth)}║")
 
-        val effectText = "  » Efeito: $effect"
-        println("║${effectText.padEnd(totalWidth)}║")
+        // val effectText = "  » Efeito: $effect
+        // println("║${effectText.padEnd(totalWidth)}║")
 
         println("║  » Descrição:                    ║")
         println("║${"".padEnd(totalWidth)}║")
