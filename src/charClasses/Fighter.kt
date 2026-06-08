@@ -25,12 +25,12 @@ class Fighter: CharClass(
     charMoveset = listOf(
         Ability(
             "Pancadão",
-            10,
+            5,
             -15,
             "Um soco simples, direto, que cumpre sua função."),
         Ability(
             "Chute Giratório",
-            20,
+            10,
             -5,
             "Com um ritmo acelerado, desfere um chute com a energia de uma rotação inteira do próprio corpo."
         ),

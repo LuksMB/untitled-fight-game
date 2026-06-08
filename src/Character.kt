@@ -22,7 +22,7 @@ class Character(
 
     fun isAlive(): Boolean = hp > 0
     fun takeDamage(damage: Double) {
-        hp -= damage
+        hp -= damage - (defense/100.0 * damage)
         if (hp < 0) hp = 0.0
     }
 

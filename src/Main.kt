@@ -2,7 +2,7 @@ fun main() {
         while (true) {
             GameInfo.showMenu()
             when (readln()) {
-                "1" -> println("Iniciando jogo...")
+                "1" -> Game.start()
                 "2" -> GameInfo.classesInfoMenu()
                 "3" -> GameInfo.showCredits()
                 "0" -> {
