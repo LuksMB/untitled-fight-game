@@ -57,9 +57,21 @@ class PassiveAbility(
     }
 
     fun showPassiveAbility() {
+        var hook: String = when(trigger) {
+            TriggerType.ON_TAKE_DAMAGE -> "Sofrer dano"
+            TriggerType.ON_OPPONENT_MISS -> "Erro do oponente"
+            TriggerType.ON_LOW_HEALTH -> "HP está baixo"
+        }
+
+        var affectedHook: String = when(affectedStat) {
+            AffectedStat.DEFENSE -> "+$modifierValue de defesa"
+            AffectedStat.NONE -> "$modifierValue de dano no oponente"
+            AffectedStat.DAMAGE -> "+$modifierValue% de dano nos golpes"
+        }
+
         val attributes = mutableListOf(
-            "» Gatilho: $trigger",
-            "» Efeito  : +$modifierValue de $affectedStat"
+            "» Gatilho: $hook",
+            "» Efeito: $affectedHook",
         )
 
         PrinterConsoleBox.printBox(
