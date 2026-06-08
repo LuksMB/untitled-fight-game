@@ -1,17 +1,16 @@
 import GameInfo.Companion.clearScreen
 import components.PrinterConsoleBox
 
-abstract class CharClass(
-    val className: String,
-    val resourceName: String,
-    val description: String,
-    val baseHp: Double,
-    val baseDefense: Int,
-    val baseAccuracy: Int,
-    val baseResource: Int,
-    val passive: PassiveAbility,
+interface CharClass {
+    val className: String
+    val resourceName: String
+    val description: String
+    val baseHp: Double
+    val baseDefense: Int
+    val baseAccuracy: Int
+    val baseResource: Int
+    val passive: PassiveAbility
     val charMoveset: List<Ability>
-) {
 
     fun presentClass() {
         val attributes = listOf(
@@ -29,7 +28,7 @@ abstract class CharClass(
         )
     }
 
-    fun AbilitiesInfo() {
+    fun abilitiesInfo() {
         println("\n╔══════════════════════════════════╗")
         println("║  1. Ver atributos                ║")
         println("║  2. Ver habilidades              ║")
@@ -40,22 +39,22 @@ abstract class CharClass(
     }
 
     fun showAbilitiesClass() {
-        AbilitiesInfo()
+        abilitiesInfo()
         while (true){
             when (readln()) {
                 "1" -> {
                     presentClass()
-                    AbilitiesInfo()
+                    abilitiesInfo()
                 }
                 "2" -> {
                     clearScreen()
                     charMoveset.forEach { it.showAbilities() }
-                    AbilitiesInfo()
+                    abilitiesInfo()
                 }
                 "3" -> {
                     clearScreen()
                     passive.showPassiveAbility()
-                    AbilitiesInfo()
+                    abilitiesInfo()
                 }
                 "0" -> {
                     break

@@ -6,23 +6,23 @@ import PassiveAbility
 import enum.AffectedStat
 import enum.TriggerType
 
-class Mage: CharClass(
-    className = "Mago",
-    baseHp = 90.0,
-    baseDefense = 10,
-    baseAccuracy = 75,
-    baseResource = 150,
-    resourceName = "Mana",
-    description = "Sábio e poderoso, esse especialista em magias ofensivas é a escolha certa para causar muito dano de uma só vez.",
-    passive = PassiveAbility(
+class Mage: CharClass {
+    override val className = "Mago"
+    override val baseHp = 90.0
+    override val baseDefense = 10
+    override val baseAccuracy = 75
+    override val baseResource = 150
+    override val resourceName = "Mana"
+    override val description = "Sábio e poderoso, esse especialista em magias ofensivas é a escolha certa para causar muito dano de uma só vez."
+    override val passive = PassiveAbility(
         "Armadura de Mana",
         "Ao receber dano, parte da mana do mago é convertida em uma nova camada de defesa contra os próximos ataques.",
         TriggerType.ON_TAKE_DAMAGE,
         0,
         AffectedStat.DEFENSE,
         2
-    ),
-    charMoveset = listOf(
+    )
+    override val charMoveset = listOf(
         Ability(
             "Bola de Fogo",
             30,
@@ -32,14 +32,11 @@ class Mage: CharClass(
             "Relâmpago",
             40,
             100,
-            "Controlando as nuvens no céu, o mago provoca um raio logo acima do seu oponente."
-        ),
+            "Controlando as nuvens no céu, o mago provoca um raio logo acima do seu oponente."),
         Ability(
             "Canalizar Mana",
             10,
             -60,
-            "O mago fecha os olhos e se concentra, buscando mais mana nos seus arredores para reabastecer sua capacidade mágica."
-
-        )
+            "O mago fecha os olhos e se concentra, buscando mais mana nos seus arredores para reabastecer sua capacidade mágica.")
     )
-)
+}

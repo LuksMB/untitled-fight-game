@@ -60,9 +60,9 @@ class GameInfo {
         }
 
         fun classesInfoMenu() {
-            val mage: Mage = Mage()
-            val fighter: Fighter = Fighter()
-            val ranger: Ranger = Ranger()
+            val mage = Mage()
+            val fighter = Fighter()
+            val ranger = Ranger()
             while (true){
                 showClassesInfo()
                 when (readln()) {
