@@ -32,7 +32,7 @@ interface CharClass {
     fun abilitiesInfo(selector: Boolean) {
         clearScreen()
         val attributesWithSelection = listOf(
-            "1. Selecionar Personagem",
+            "1. Jogar como $className",
             "2. Atributos",
             "3. Habilidades",
             "4. Passiva",
