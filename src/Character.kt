@@ -22,9 +22,11 @@ class Character(
 
     fun isAlive(): Boolean = hp > 0
     fun takeDamage(damage: Double) {
-        hp -= damage - (defense/100.0 * damage)
+        hp -= damage
         if (hp < 0) hp = 0.0
     }
+
+    fun getDefense(): Int = defense
 
     fun getResource(): Int = resource
     fun useResource(cost: Int) {
@@ -45,4 +47,14 @@ class Character(
         hp += cost
         if (hp > 100) hp = 100.0
     }
+
+    fun resetHp() {
+        this.hp = this.maxHp
+    }
+
+    fun resetResource() {
+        this.resource = this.maxResource
+    }
+
+
 }

@@ -20,22 +20,24 @@ class Ability(
 
             when (rollDice) {
                 in critInterval -> {
-                    applyDamage(opponent, 1 + modPassive)
-                    println($$"» [$$name] DANO CRÍTICO! $$damage de dano causado ao oponente.")
+                    val realDamage = this.damage + ((1 + modPassive) * this.damage) - (opponent.getDefense()/100.0 * damage)
+                    applyDamage(opponent, realDamage)
+                    println($$"» [$$name] DANO CRÍTICO! $$realDamage de dano causado ao $${opponent.name}.")
                 }
                 in hitInterval -> {
-                    applyDamage(opponent, modPassive)
-                    println($$"» [$$name] $$damage de dano causado ao oponente.")
+                    val realDamage = this.damage + (this.damage * modPassive) - (opponent.getDefense()/100.0 * damage)
+                    applyDamage(opponent, realDamage)
+                    println($$"» [$$name] $$realDamage de dano causado ao $${opponent.name}.")
                 }
-                else -> println("Você errou o ataque, concentre-se!")
+                else -> println("O ${opponent.name} se esquivou, concentre-se, ${player.name}!")
             }
         } else {
             println("O ataque falhou, você está sem $typeOfResource.")
         }
     }
 
-    private fun applyDamage(opponent: Character, modifier: Double = 0.0) {
-        opponent.takeDamage(this.damage + (modifier * this.damage))
+    private fun applyDamage(opponent: Character, damageModified: Double) {
+        opponent.takeDamage(damageModified)
     }
 
     private fun chargePlayer(player: Character) {

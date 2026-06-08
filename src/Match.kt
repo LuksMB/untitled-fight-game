@@ -4,26 +4,27 @@ class Match {
 
     companion object {
 
-        fun battle(player: Character, opponent: Character, ability: Ability) {
-            println("\n Você selecionou a habilidade ${ability.name}")
+        fun battle(player: Character, opponent: Character, ability: Ability, playerTurn: Boolean = true) {
+            if (playerTurn) println("\n Você selecionou a habilidade ${ability.name}")
+            else println("\n O inimigo selecionou a habilidade ${ability.name}")
             ability.execute(player, opponent)
         }
 
         fun showStateGame(player: Character, opponent: Character) {
             val attributes = listOf(
                 "Protagonista: ${player.getHp()} HP",
-                "${player.getResourceName()}: ${player.getHp()}",
-                "${opponent.name}: ${opponent.getHp()} HP"
+                "${player.getResourceName()}: ${player.getResource()}",
+                "",
+                "${opponent.name}: ${opponent.getHp()} HP",
+                "${opponent.getResourceName()}: ${opponent.getResource()}"
             )
 
             PrinterConsoleBox.printBox(
-                title = "Estado do jogo",
+                title = "Seu oponente é o ${opponent.name}!",
                 attributes = attributes,
                 description = "",
                 width = 50
             )
-            println("➜ Precione ENTER para continuar:")
-            readln()
         }
 
         fun showActions(player: Character): String {
@@ -32,11 +33,9 @@ class Match {
                     "${index + 1}. ${ability.name}"
                 }
 
-            val menuComplete = attributes + listOf("0. Voltar")
-
             PrinterConsoleBox.printBox(
-                title = "Lista de ações",
-                attributes = menuComplete,
+                title = "Habilidades",
+                attributes = attributes,
                 description = "",
                 width = 50
             )
@@ -44,18 +43,17 @@ class Match {
             return readln()
         }
 
-        fun matchMenu(player: Character, opponent: Character) {
-            showStateGame(player, opponent)
-
+        fun matchMenu(player: Character, opponent: Character): Boolean {
             while (true) {
+                showStateGame(player, opponent)
                 val action = showActions(player).toIntOrNull()?.minus(1)
 
                 if (action != null && action in player.charClass.charMoveset.indices) {
                     val chosenAbility = player.charClass.charMoveset[action]
                     battle(player, opponent, chosenAbility)
-                    if (!opponent.isAlive()) {
+                    if (opponent.getHp() == 0.0) {
                         println("Oponente está morto! Parabéns!")
-                        break
+                        return true
                     }
                 }else
                 {
@@ -67,10 +65,10 @@ class Match {
                 val actionOpponent = (0..2).random()
 
                 val chosenAbility = opponent.charClass.charMoveset[actionOpponent]
-                battle(opponent, player, chosenAbility)
-                if (!player.isAlive()) {
+                battle(opponent, player, chosenAbility, false)
+                if (player.getHp() == 0.0) {
                     println("Você perdeu uma vida. Sinto muito...")
-                    break
+                    return false
                 }
             }
         }

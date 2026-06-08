@@ -41,7 +41,7 @@ class GameInfo {
             println("╠══════════════════════════════════╣")
             println("║     Obrigado por jogar!          ║")
             println("╚══════════════════════════════════╝")
-            print("\n➜ Precione ENTER para voltar: ")
+            print("\n➜ Pressione ENTER para voltar: ")
             readln()
         }
 
