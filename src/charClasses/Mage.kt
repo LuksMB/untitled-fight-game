@@ -39,4 +39,8 @@ class Mage: CharClass {
             -60,
             "O mago fecha os olhos e se concentra, buscando mais mana nos seus arredores para reabastecer sua capacidade mágica.")
     )
+
+    override fun warCry() {
+        println("O Mago exclama: Pelas forças arcanas que moldam o mundo, você sentirá meu poder!")
+    }
 }

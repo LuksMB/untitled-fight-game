@@ -41,4 +41,8 @@ class Fighter: CharClass {
             100,
             "Com o sangue fervendo, o lutador vai executar todo o combo que ele conhece no inimigo.")
     )
+
+    override fun warCry() {
+        println("O Lutador grita: Corpo de aço, mente de fogo! Cada golpe seu só fortalece minha vontade!")
+    }
 }

@@ -12,6 +12,8 @@ interface CharClass {
     val passive: PassiveAbility
     val charMoveset: List<Ability>
 
+    abstract fun warCry(): Unit
+
     fun presentClass() {
         clearScreen()
         val attributes = listOf(

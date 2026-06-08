@@ -39,4 +39,9 @@ class Ranger: CharClass {
             -6,
             "Rebola o tambor vazio no inimigo e recarrega as balas, para tudo se tem uma utilidade.")
     )
+
+    override fun warCry() {
+        println("O Atirador afirma: Saque rápido e mira certeira! Que a pólvora fale por mim!")
+    }
+
 }

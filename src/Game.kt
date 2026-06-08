@@ -24,6 +24,9 @@ class Game(playerClass: String) {
     }
 
     fun start(){
+        player.charClass.warCry()
+        print("\n➜ Pressione ENTER para iniciar sua jornada: ")
+        readln()
         while (wins < 3 && losses < 3) {
             chooseEnemy()
             if (Match.matchMenu(player, enemy)) {
