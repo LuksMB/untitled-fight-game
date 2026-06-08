@@ -9,13 +9,15 @@ class Match {
             ability.execute(player, opponent)
         }
 
-        fun showOpponent(opponent: Character) {
+        fun showStateGame(player: Character, opponent: Character) {
             val attributes = listOf(
-                "HP         : ${opponent.getHp()}",
+                "Protagonista: ${player.getHp()} HP",
+                "${player.getResourceName()}: ${player.getHp()}",
+                "${opponent.name}: ${opponent.getHp()} HP"
             )
 
             PrinterConsoleBox.printBox(
-                title = "Seu oponente é um ${opponent.name}!",
+                title = "Estado do jogo",
                 attributes = attributes,
                 description = "",
                 width = 50
@@ -33,7 +35,7 @@ class Match {
             val menuComplete = attributes + listOf("0. Voltar")
 
             PrinterConsoleBox.printBox(
-                title = "Você é um ${player.name}",
+                title = "Lista de ações",
                 attributes = menuComplete,
                 description = "",
                 width = 50
@@ -43,7 +45,7 @@ class Match {
         }
 
         fun matchMenu(player: Character, opponent: Character) {
-            showOpponent(opponent)
+            showStateGame(player, opponent)
 
             while (true) {
                 val action = showActions(player).toIntOrNull()?.minus(1)
