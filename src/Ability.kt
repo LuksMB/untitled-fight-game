@@ -1,6 +1,6 @@
 import components.PrinterConsoleBox
 
-abstract class Ability(
+class Ability(
     val name: String,
     val damage: Int,
     val cost: Int,

@@ -10,6 +10,11 @@ class Character(
     private var resource: Int = maxResource
     private var accuracy: Int = charClass.baseAccuracy
     private var defense: Int = charClass.baseDefense
+    private var passiveStatus: Boolean = false
+
+    fun getPassiveStatus(): Boolean = passiveStatus
+    fun activatePassive() { passiveStatus = true }
+    fun deactivatePassive() { passiveStatus = false }
 
     fun getHp(): Int = hp
 
