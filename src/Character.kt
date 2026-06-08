@@ -11,6 +11,8 @@ class Character(
     private var accuracy: Int = charClass.baseAccuracy
     private var defense: Int = charClass.baseDefense
 
+    fun getHp(): Int = hp
+
     fun isAlive(): Boolean = hp > 0
     fun takeDamage(damage: Int) {
         hp -= damage
@@ -20,5 +22,15 @@ class Character(
     fun useResource(cost: Int) {
         resource -= cost
         if (resource < 0) resource = 0
+    }
+
+    fun increaseDefense(cost: Int) {
+        defense += cost
+        if (defense > 100) defense = 100
+    }
+
+    fun increaseDamage(cost: Int) {
+        hp += cost
+        if (hp > 100) hp = 100
     }
 }
