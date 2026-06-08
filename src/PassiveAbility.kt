@@ -61,4 +61,37 @@ class PassiveAbility(
             else -> return
         }
     }
+
+    public fun showPassiveAbility() {
+
+        val nameText = "  » Nome: $name"
+        val chanceText = "  » Chance: $chance%"
+        val triggerText = "  » Gatilho: $trigger"
+        val effectText = "  » Efeito: +$modifierValue de $affectedStat"
+
+        val totalWidth = 36
+        val maxTextWidth = totalWidth - 4
+        val descriptionLines = description.chunked(maxTextWidth)
+
+        if (trigger == TriggerType.ON_LOW_HEALTH) {
+            val conditionText = "  » Ativa abaixo de: $activationThreshold HP"
+            println("║${conditionText.padEnd(totalWidth)}║")
+        }
+
+        for (line in descriptionLines) {
+            val formattedLine = "    ${line.trim()}"
+            println("║${formattedLine.padEnd(totalWidth)}║")
+        }
+
+        println("╔══════════════════════════════════════╗")
+        println("║           HABILIDADE PASSIVA         ║")
+        println("╠══════════════════════════════════════╣")
+        println("║${nameText.padEnd(totalWidth)}║")
+        println("║${triggerText.padEnd(totalWidth)}║")
+        println("║${chanceText.padEnd(totalWidth)}║")
+        println("║${effectText.padEnd(totalWidth)}║")
+        println("╠══════════════════════════════════════╣")
+        println("║  Descrição:                          ║")
+        println("╚══════════════════════════════════════╝")
+    }
 }
