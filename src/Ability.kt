@@ -1,12 +1,13 @@
+import components.PrinterConsoleBox
+
 abstract class Ability(
     val name: String,
     val damage: Int,
     val cost: Int,
     val description: String,
-    val cooldown: Int
 ) {
 
-    public fun execute(player: Character, opponent: Character) {
+    fun execute(player: Character, opponent: Character) {
         if (player.isAlive()) {
             chargePlayer(player)
             applyDamage(opponent)
@@ -22,33 +23,20 @@ abstract class Ability(
     }
 
     public fun showAbilitys() {
-        val totalWidth = 34
+        val attributes = listOf(
+            "Nome         : $name",
+            "Dano         : $damage",
+            "Custo        : $cost",
+        )
 
-        println("╔══════════════════════════════════╗")
-        println("║             HABILIDADE           ║")
-        println("╠══════════════════════════════════╣")
+        PrinterConsoleBox.printBox(
+            title = "HABILIDADE",
+            attributes = attributes,
+            description = description,
+            width = 34
+        )
 
-        val nameText = "  [ PERSONAGEM $name ]"
-        println("║${nameText.padEnd(totalWidth)}║")
-        println("║${"".padEnd(totalWidth)}║")
-
-        val damageText = "  » Dano: $damage"
-        println("║${damageText.padEnd(totalWidth)}║")
-
-        // val effectText = "  » Efeito: $effect
-        // println("║${effectText.padEnd(totalWidth)}║")
-
-        println("║  » Descrição:                    ║")
-        println("║${"".padEnd(totalWidth)}║")
-
-        val maxTextWidth = totalWidth - 6
-
-        val descriptionLines = description.chunked(maxTextWidth)
-
-        for (line in descriptionLines) {
-            val formattedLine = "      » ${line.trim()}"
-            println("║${formattedLine.padEnd(totalWidth)}║")
-        }
-        println("╚══════════════════════════════════╝")
+        println("Pressione ENTER para voltar")
+        readln()
     }
 }

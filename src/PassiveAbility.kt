@@ -1,3 +1,5 @@
+import components.PrinterConsoleBox
+
 enum class TriggerType { ON_TAKE_DAMAGE, ON_OPPONENT_MISS, ON_LOW_HEALTH }
 enum class AffectedStat { DAMAGE, DEFENSE }
 
@@ -62,36 +64,30 @@ class PassiveAbility(
         }
     }
 
-    public fun showPassiveAbility() {
+    fun showPassiveAbility() {
+        val attributes = mutableListOf(
+            "» Gatilho: $trigger",
+            "» Chance  : $chance%",
+            "» Efeito  : +$modifierValue de $affectedStat"
+        )
 
-        val nameText = "  » Nome: $name"
-        val chanceText = "  » Chance: $chance%"
-        val triggerText = "  » Gatilho: $trigger"
-        val effectText = "  » Efeito: +$modifierValue de $affectedStat"
+        if (trigger == TriggerType.ON_TAKE_DAMAGE) {
+            attributes.add("» Ativa quando recebe dano e incrementa $modifierValue de DEFESA")
+        }
 
-        val totalWidth = 36
-        val maxTextWidth = totalWidth - 4
-        val descriptionLines = description.chunked(maxTextWidth)
+        if (trigger == TriggerType.ON_OPPONENT_MISS) {
+            attributes.add("» Ativa quando o oponente erra um movimento, desferindo $activationThreshold de ATAQUE")
+        }
 
         if (trigger == TriggerType.ON_LOW_HEALTH) {
-            val conditionText = "  » Ativa abaixo de: $activationThreshold HP"
-            println("║${conditionText.padEnd(totalWidth)}║")
+            attributes.add("» Ativa abaixo de $activationThreshold HP")
         }
 
-        for (line in descriptionLines) {
-            val formattedLine = "    ${line.trim()}"
-            println("║${formattedLine.padEnd(totalWidth)}║")
-        }
-
-        println("╔══════════════════════════════════════╗")
-        println("║           HABILIDADE PASSIVA         ║")
-        println("╠══════════════════════════════════════╣")
-        println("║${nameText.padEnd(totalWidth)}║")
-        println("║${triggerText.padEnd(totalWidth)}║")
-        println("║${chanceText.padEnd(totalWidth)}║")
-        println("║${effectText.padEnd(totalWidth)}║")
-        println("╠══════════════════════════════════════╣")
-        println("║  Descrição:                          ║")
-        println("╚══════════════════════════════════════╝")
+        PrinterConsoleBox.printBox(
+            title = "HABILIDADE PASSIVA: $name",
+            attributes = attributes,
+            description = description,
+            width = 44
+        )
     }
 }
